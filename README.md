@@ -50,7 +50,7 @@
 Aditya Mangla
 
 <p align="center">
-<img src = "Images/Aditya.jpg"  height="120" alt="Aditya Mangla">
+<img src = "https://avatars1.githubusercontent.com/u/41681751?s=460&u=e217336e4e2b92068cdf734ebca07a8c99202d93&v=4"  height="120" alt="Aditya Mangla">
 </p>
 <p align="center">
 <a href = "https://github.com/aadimangla"><img src = "http://www.iconninja.com/files/241/825/211/round-collaboration-social-github-code-circle-network-icon.svg" width="36" height = "36"/></a>
