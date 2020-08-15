@@ -1,19 +1,33 @@
-import 'package:biocom2/new_adobe_designs/appointments.dart';
+import 'package:biocom2/new_adobe_designs/dashboard.dart';
 import 'package:biocom2/new_adobe_designs/my_profile.dart';
 import 'package:biocom2/new_adobe_designs/patients.dart';
+import 'package:biocom2/tools/calender_timeline.dart';
+import 'package:bubble_timeline/bubble_timeline.dart';
+import 'package:bubble_timeline/timeline_item.dart';
+import 'package:calendar_timeline/calendar_timeline.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:date_picker_timeline/date_picker_timeline.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_rounded_date_picker/rounded_picker.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:timeline_list/timeline.dart';
+import 'package:timeline_list/timeline_model.dart';
 
-class AdobeDashboard extends StatefulWidget {
-  static String id = 'dashboard';
+class AdobeAppointments extends StatefulWidget {
   @override
-  _AdobeDashboardState createState() => _AdobeDashboardState();
+  _AdobeAppointmentsState createState() => _AdobeAppointmentsState();
 }
 
-class _AdobeDashboardState extends State<AdobeDashboard> {
+class _AdobeAppointmentsState extends State<AdobeAppointments> {
+  DateTime _dateTime;
+
+  @override
+  void initState() {
+    _dateTime = DateTime.now();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -59,17 +73,17 @@ class _AdobeDashboardState extends State<AdobeDashboard> {
 //                    ),
                     IconButton(
                       icon: Icon(Icons.home),
-                      onPressed: () {},
-                    ),
-                    IconButton(
-                      icon: Icon(Icons.list),
                       onPressed: () {
                         Navigator.push(
                             context,
                             PageTransition(
                                 type: PageTransitionType.fade,
-                                child: AdobeAppointments()));
+                                child: AdobeDashboard()));
                       },
+                    ),
+                    IconButton(
+                      icon: Icon(Icons.list),
+                      onPressed: () {},
                     ),
                     Container(),
                     IconButton(
@@ -115,107 +129,34 @@ class _AdobeDashboardState extends State<AdobeDashboard> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        IconButton(
-                          icon: Icon(
-                            Icons.menu,
-                            color: Color(0xFF115291),
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.fade,
-                                child: AdobeMyProfile(),
-                              ),
-                            );
-                          },
-                          child: CircleAvatar(
-                            backgroundImage:
-                                AssetImage('assets/images/avatar.jpg'),
-                            radius: 30.0,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Text(
-                          'Good Evening',
-                          style: const TextStyle(
-                            color: Color(0xFF115291),
-                            fontFamily: 'Montserrat',
-                            fontSize: 25.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Text(
-                          'Alexix',
-                          style: const TextStyle(
-                            color: Color(0xFF115291),
-                            fontFamily: 'Montserrat',
-                            fontSize: 25.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.05),
-                        Text(
-                          'Your target for today is to keep positive mindset and smile to everyone you meet.',
-                          style: const TextStyle(
-                            color: Color(0xFF115291),
-                            fontWeight: FontWeight.bold,
-                            fontSize: 15.0,
-                          ),
-                        ),
-                        SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.025),
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  PageTransition(
-                                    type: PageTransitionType.fade,
-                                    child: AdobeMyProfile(),
-                                  ),
-                                );
-                              },
-                              child: Container(
-                                width: 85.0,
-                                height: 30.0,
-                                decoration: BoxDecoration(
-                                  color: Color(0xFF115291),
-                                  borderRadius: BorderRadius.circular(50.0),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    'View Profile',
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 12.0),
-                                  ),
-                                ),
+                          children: [
+                            IconButton(
+                              icon: Icon(
+                                Icons.menu,
+                                color: Color(0xFF115291),
                               ),
-                            )
+                            ),
+                            SizedBox(
+                              width: 5.0,
+                            ),
+                            Text(
+                              'Dr. Alexix Mangla',
+                              style: const TextStyle(
+                                color: Color(0xFF115291),
+                                fontSize: 23.0,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                           ],
                         ),
+                        CircleAvatar(
+                          backgroundImage:
+                              AssetImage('assets/images/avatar.jpg'),
+                          radius: 23.0,
+                        ),
                       ],
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -228,12 +169,13 @@ class _AdobeDashboardState extends State<AdobeDashboard> {
                     width: 20.0,
                   ),
                   Text(
-                    'What are you doing today?',
+                    'Your Appointments',
                     style: TextStyle(
-                        fontFamily: 'Montserrat',
-                        color: Colors.black,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 16.5),
+                      fontFamily: 'Montserrat',
+                      color: Colors.black,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 15.0,
+                    ),
                   ),
                 ],
               ),
@@ -242,7 +184,7 @@ class _AdobeDashboardState extends State<AdobeDashboard> {
               ),
               CarouselSlider(
                 options: CarouselOptions(
-                  height: 170.0,
+                  height: 150.0,
                   enlargeCenterPage: true,
                   autoPlay: true,
                   aspectRatio: 16 / 9,
@@ -260,6 +202,7 @@ class _AdobeDashboardState extends State<AdobeDashboard> {
                     ),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -267,7 +210,7 @@ class _AdobeDashboardState extends State<AdobeDashboard> {
                             CircleAvatar(
                               backgroundImage:
                                   AssetImage('assets/images/avatar.jpg'),
-                              radius: 45.0,
+                              radius: 35.0,
                             ),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -278,7 +221,7 @@ class _AdobeDashboardState extends State<AdobeDashboard> {
                                     color: Colors.black,
                                     fontFamily: 'Montserrat',
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 18.5,
+                                    fontSize: 16.5,
                                   ),
                                 ),
                                 Text(
@@ -332,7 +275,7 @@ class _AdobeDashboardState extends State<AdobeDashboard> {
                             CircleAvatar(
                               backgroundImage:
                                   AssetImage('assets/images/avatar.jpg'),
-                              radius: 45.0,
+                              radius: 35.0,
                             ),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -343,7 +286,7 @@ class _AdobeDashboardState extends State<AdobeDashboard> {
                                     color: Colors.black,
                                     fontFamily: 'Montserrat',
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 18.5,
+                                    fontSize: 16.5,
                                   ),
                                 ),
                                 Text(
@@ -397,7 +340,7 @@ class _AdobeDashboardState extends State<AdobeDashboard> {
                             CircleAvatar(
                               backgroundImage:
                                   AssetImage('assets/images/avatar.jpg'),
-                              radius: 45.0,
+                              radius: 35.0,
                             ),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -408,7 +351,7 @@ class _AdobeDashboardState extends State<AdobeDashboard> {
                                     color: Colors.black,
                                     fontFamily: 'Montserrat',
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 18.5,
+                                    fontSize: 16.5,
                                   ),
                                 ),
                                 Text(
@@ -451,214 +394,232 @@ class _AdobeDashboardState extends State<AdobeDashboard> {
               SizedBox(
                 height: 20.0,
               ),
-              Row(
-                children: [
-                  SizedBox(
-                    width: 20.0,
-                  ),
-                  Text(
-                    'Recent active patients',
-                    style: TextStyle(
-                        fontFamily: 'Montserrat',
-                        color: Colors.black,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 16.5),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 20.0,
-              ),
-              Container(
-                color: Colors.white,
-                padding: const EdgeInsets.only(left: 16.0),
-                height: 150.0,
-                child: ListView(
-                  physics: BouncingScrollPhysics(),
-                  scrollDirection: Axis.horizontal,
+              Padding(
+                padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+                child: Row(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 15.0, right: 10.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Container(
-                            width: 92.0,
-                            height: 92.0,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(13.0),
-                              color: Color(0xFFfefefe),
-                              image: DecorationImage(
-                                image: const AssetImage(
-                                    'assets/images/avatar.jpg'),
-                                fit: BoxFit.cover,
-                              ),
+                    Expanded(
+                      child: Container(
+                        height: 60.0,
+                        decoration: BoxDecoration(
+                          color: Color(0xFFEFEFF6),
+                          borderRadius: BorderRadius.circular(15.0),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Choose Date',
+                              style: TextStyle(
+                                  color: Color(0xFF6B6690),
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w700),
                             ),
-                          ),
-                          SizedBox(
-                            height: 10.0,
-                          ),
-                          Text('Harsh Gour')
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 15.0, right: 10.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Container(
-                            width: 92.0,
-                            height: 92.0,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(13.0),
-                              color: Color(0xFFfefefe),
-                              image: DecorationImage(
-                                image: const AssetImage(
-                                    'assets/images/avatar.jpg'),
-                                fit: BoxFit.cover,
+                            GestureDetector(
+                              onTap: () {
+                                showRoundedDatePicker(
+                                  theme: ThemeData.dark(),
+                                  context: context,
+                                  initialDate: _dateTime == null
+                                      ? DateTime.now()
+                                      : _dateTime,
+                                  firstDate: DateTime(2001),
+                                  lastDate: DateTime(2022),
+                                  borderRadius: 16,
+
+                                  /// Do substring at length = 11 to get only the date
+                                ).then((date) {
+                                  setState(() {
+                                    _dateTime = date;
+                                  });
+                                  print(_dateTime);
+                                });
+                              },
+                              child: Container(
+                                height: 35.0,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(5.0),
+                                ),
+                                child: Center(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: Text(
+                                      _dateTime.toString() == null
+                                          ? DateTime.now()
+                                          : _dateTime
+                                              .toString()
+                                              .substring(0, 11),
+                                      style: TextStyle(
+                                        color: Color(0xFF6B6690),
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                ),
                               ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 10.0,
-                          ),
-                          Text('Harsh Gour')
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 15.0, right: 10.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Container(
-                            width: 92.0,
-                            height: 92.0,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(13.0),
-                              color: Color(0xFFfefefe),
-                              image: DecorationImage(
-                                image: const AssetImage(
-                                    'assets/images/avatar.jpg'),
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 10.0,
-                          ),
-                          Text('Harsh Gour')
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 15.0, right: 10.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Container(
-                            width: 92.0,
-                            height: 92.0,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(13.0),
-                              color: Color(0xFFfefefe),
-                              image: DecorationImage(
-                                image: const AssetImage(
-                                    'assets/images/avatar.jpg'),
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 10.0,
-                          ),
-                          Text('Harsh Gour')
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 15.0, right: 10.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Container(
-                            width: 92.0,
-                            height: 92.0,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(13.0),
-                              color: Color(0xFFfefefe),
-                              image: DecorationImage(
-                                image: const AssetImage(
-                                    'assets/images/avatar.jpg'),
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 10.0,
-                          ),
-                          Text('Harsh Gour')
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 15.0, right: 10.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Container(
-                            width: 92.0,
-                            height: 92.0,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(13.0),
-                              color: Color(0xFFfefefe),
-                              image: DecorationImage(
-                                image: const AssetImage(
-                                    'assets/images/avatar.jpg'),
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 10.0,
-                          ),
-                          Text('Harsh Gour')
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 15.0, right: 10.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Container(
-                            width: 92.0,
-                            height: 92.0,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(13.0),
-                              color: Color(0xFFfefefe),
-                              image: DecorationImage(
-                                image: const AssetImage(
-                                    'assets/images/avatar.jpg'),
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 10.0,
-                          ),
-                          Text('Harsh Gour')
-                        ],
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   ],
                 ),
-              )
+              ),
+//              Container(
+//                child: DatePicker(
+//                  DateTime.now().add(Duration(days: -3)),
+//                  width: 60,
+//                  height: 80,
+//                  daysCount: 500,
+//                  controller: _controller,
+//                  initialSelectedDate: DateTime.now(),
+//                  selectionColor: Color(0xFF414956),
+//                  selectedTextColor: Colors.white,
+//                  onDateChange: (date) {
+//                    // New date selected
+//                    setState(() {
+//                      _selectedValue = date;
+//                    });
+//                  },
+//                ),
+//              ),
+//            BubbleTimeline()
+              SizedBox(
+                height: 30.0,
+              ),
+              buildTimeline(),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Widget buildTimeline() {
+    return ListView.builder(
+      physics: NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      scrollDirection: Axis.vertical,
+      itemCount: 5,
+      itemBuilder: (BuildContext context, int index) {
+        return Stack(
+          children: <Widget>[
+            new Padding(
+              padding: const EdgeInsets.only(left: 45.0),
+              child: new Container(
+                margin: new EdgeInsets.all(20.0),
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  elevation: 7.0,
+                  child: new Container(
+                    height: 130,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20.0),
+                      color: Colors.white,
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Row(
+                            children: [
+                              CircleAvatar(
+                                backgroundImage:
+                                    AssetImage('assets/images/avatar.jpg'),
+                                radius: 35.0,
+                              ),
+                              SizedBox(
+                                width: 25.0,
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'ML Srivastava',
+                                    style: TextStyle(
+                                      color: Color(0xFF115291),
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: 'Montserrat',
+                                      fontSize: 22.0,
+                                    ),
+                                  ),
+                                  Text(
+                                    '19 | Male',
+                                    style: TextStyle(
+                                      color: Color(0xFF115291),
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: 'Montserrat',
+                                      fontSize: 18.0,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 5.0,
+                                  ),
+                                  Text(
+                                    '23/06/2000',
+                                    style: TextStyle(
+                                      color: Color(0xFF115291),
+                                      fontFamily: 'Montserrat',
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 13.0,
+                                    ),
+                                  ),
+                                  Text(
+                                    '6:00 - 6:30 ',
+                                    style: TextStyle(
+                                      color: Color(0xFF115291),
+                                      fontFamily: 'Montserrat',
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 13.0,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Positioned(
+              top: 0.0,
+              bottom: 0.0,
+              left: 35.0,
+              child: new Container(
+                height: double.infinity,
+                width: 2.0,
+                color: Colors.blueGrey,
+              ),
+            ),
+            Positioned(
+              top: 70.0,
+              left: 16.0,
+              child: Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: new Container(
+                  margin: new EdgeInsets.all(5.0),
+                  height: 20.0,
+                  width: 20.0,
+                  decoration: new BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.blueGrey,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }
