@@ -99,6 +99,6 @@ Harsh Gour
 
 
 <p align="center">
-	Made with :heart: by the <a href="">NutriCal Team</a>
+	Made with :heart: by the <a href="">Curae Team</a>
 </p>
 
