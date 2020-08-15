@@ -6,51 +6,45 @@
 - good evening
 - hey there
 
-## intent:goodbye
-- bye
-- goodbye
-- see you around
-- see you later
-
-## intent:affirm
+## intent:accept
 - yes
-- indeed
-- of course
-- that sounds good
-- correct
+- right
+- ok
+- okay
+- sure
+- fine
+- it's ok
+- it is okay
+- of cause
+- ofcause
 
-## intent:deny
+## intent:reject
 - no
+- don't
+- dont
+- do not
+- please no
+- no please
 - never
-- I don't think so
-- don't like that
-- no way
-- not really
+- don't do
 
-## intent:mood_great
-- perfect
-- very good
-- great
-- amazing
-- wonderful
-- I am feeling very good
-- I am great
-- I'm good
+## intent: start_assessment
+- start assessment
+- I'm ready. start the assessments now
+- start the assessments now.
+- assessment start
+- lets start the assessment now
+- covid assessment
 
-## intent:mood_unhappy
-- sad
-- very sad
-- unhappy
-- bad
-- very bad
-- awful
-- terrible
-- not very good
-- extremely sad
-- so sad
-
-## intent:bot_challenge
-- are you a bot?
-- are you a human?
-- am I talking to a bot?
-- am I talking to a human?
+## intent:corona_state
+- [india](state)
+- [corona](state)
+- [karnatka](state)
+- [Andhra pradesh](state)
+- [bihar](state)
+- [delhi](state)
+- [punjab](state)
+- [west bengal](state)
+- [odisha](state)
+- [assam](state)
+- [goa](state)

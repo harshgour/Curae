@@ -1,32 +1,383 @@
+session_config:
+  session_expiration_time: 0
+  carry_over_slots_to_new_session: false
 intents:
-  - greet
-  - goodbye
-  - affirm
-  - deny
-  - mood_great
-  - mood_unhappy
-  - bot_challenge
+- greet
+- accept
+- reject
+- corona_state
+# - begin_lead
+- start_assessment
+- begin_assessment
 
+entities:
+  - state
+
+
+slots:
+  # budget:
+  #   type: unfeaturized
+  #   auto_fill: false
+  # email:
+  #   type: unfeaturized
+  #   auto_fill: false
+  # mockup:
+  #   type: unfeaturized
+  #   auto_fill: false
+  # name:
+  #   type: unfeaturized
+  #   auto_fill: false
+  # phone:
+  #   type: unfeaturized
+  #   auto_fill: false
+  # requirement:
+  #   type: unfeaturized
+  #   auto_fill: false
+  # timeline:
+  #   type: unfeaturized
+  #   auto_fill: false
+  # url:
+  #   type: unfeaturized
+  #   auto_fill: false
+  age:
+    type: unfeaturized
+    auto_fill: false
+  gender:
+    type: unfeaturized
+    auto_fill: false
+  bodyTemperature:
+    type: unfeaturized
+    auto_fill: false
+  symptoms1:
+    type: unfeaturized
+    auto_fill: false
+  symptoms2:
+    type: unfeaturized
+    auto_fill: false
+  travelHistory:
+    type: unfeaturized
+    auto_fill: false
+  medicalHistory:
+    type: unfeaturized
+    auto_fill: false
+  symptomChanges:
+    type: unfeaturized
+    auto_fill: false
 responses:
   utter_greet:
-  - text: "Hey! How are you?"
+  - text: Hi!  I am COVID-19 Assessment Chatbot. I can help you by assessing your symptoms related to Covid-19.
+  #     Web, Mobile, Chatbot and Voicebot solutions.
+  # utter_menu:
+  # - text: What are you looking for today?
+  #   buttons:
+  #   - title: Web Application Development
+  #     payload: /begin_lead
+  #   - title: Mobile App Development
+  #     payload: /begin_lead
+  #   - title: Chatbot Development
+  #     payload: /begin_lead
+  #   - title: Frontend Development
+  #     payload: /begin_lead
+  #   - title: Progessive Web App Development
+  #     payload: /begin_lead
+  #   - title: AI & Machine Learning
+  #     payload: /begin_lead
+  # utter_lead_q1:
+  # - text: Great. We have developed more than 100+ web applications till date!
+  # utter_ask_requirement:
+  # - text: Can you share some brief description of your requirements?
+  # utter_ask_mockup:
+  # - text: "Alright! \n\nDo you have any of the following ready?"
+  #   buttons:
+  #   - title: Wireframes
+  #     payload: Wireframes
+  #   - title: Designs
+  #     payload: Designs
+  #   - title: RFP or any Document
+  #     payload: RFP or any Document
+  #   - title: None
+  #     payload: None
+  # utter_urlAvailable:
+  # - text: Is there any URL that you would like to share for our reference?
+  #   buttons:
+  #   - title: Yes
+  #     payload: yes
+  #   - title: No
+  #     payload: no
+  # utter_ask_url:
+  # - text: Could you please share the URL with us?
+  # utter_ask_timeline:
+  # - text: When do you plan to enter development with this project?
+  #   buttons:
+  #   - title: Immediately
+  #     payload: Immediately
+  #   - title: within a month
+  #     payload: within a month
+  #   - title: within the next 3 months
+  #     payload: within the next 3 months
+  #   - title: after 3 months
+  #     payload: after 3 months
+  # utter_ask_budget:
+  # - text: "Great!\n\nWhat is your earmarked budget for this project?"
+  #   buttons:
+  #   - title: Below $5000
+  #     payload: Below $5000
+  #   - title: $5000 - $15000
+  #     payload: $5000 - $15000
+  #   - title: $15000 - $25000
+  #     payload: $15000 - $25000
+  #   - title: $25000 and above
+  #     payload: $25000 and above
+  # utter_ask_name:
+  # - text: Great. May I know your name please?
+  # utter_ask_email:
+  # - text: Can you please share your email ID? Trust us, we will never spam!
+  # utter_ask_phone:
+  # - text: Can I have your phone number
+  # utter_lead_q2:
+  # - text: Thanks for answering all our questions and being this patient. We appreciate
+  #     it!
+  # utter_lead_q3:
+  # - text: "Here is your data: \n - requirement: {requirement}\n - mockup: {mockup}\n\
+  #     \ - url: {url}\n - timeline: {timeline}\n - budget: {budget}\n - name: {name}\n\
+  #     \ - email: {email}\n - phone: {phone}"
+  # utter_lead_q4:
+  # - text: I will have our Business Experts get in touch with you soon, to make your
+  #     project a reality!
+  # utter_lead_q5:
+  # - text: In the meanwhile for anything, you can contact us at sales@cedextech.com
+  #     or +91 888 999 9999
+  utter_start_conv:
+  - text: "Hello, there We understand times are tough and everyone is panicking.\n\
+    \ But we're here to help ease it out for you! \n\
+    \ Our coronavirus self-assessment scan has been developed on the basis of guidelines from the WHO.\n\
+    \ If you feel any of the symptoms please visit your nearest COVID-19 center and safeguard others around you \n\
+    \ Can we proceed with your assessment now? "
+    buttons:
+      - title: Yes
+        payload: Yes
+      - title: No
+        payload: No
+  utter_ask_age:
+  - text: "Great! So we're about to ask you a couple of questions to determine your health condition. \n\
+    \ Let's start with the basics! How old are you?"
+  utter_ask_gender:
+  - text: What is your birth gender?
+    buttons:
+      - title: Male
+        payload: Male
+      - title: Female
+        payload: Female
+      - title: I do not tell
+        payload: I do not tell
+  utter_under_16:
+  - text: "Please have a chat with your family first and come back. \n\
+    \ I'm always here to help you.\n\
+    \ You can start your assessment by entering 'start assessment' keywords. \n\
+    \ However, you must maintain social distancing and regularly wash your hands and sanitize them. \n\
+    "
+  utter_above_107:
+  - text: "Long and healthy live dear user. Please contact your family first and come back. \n\
+    \ I'm always here to help you.\n\
+    \ You can start your assessment by entering 'start assessment' keywords. \n\
+    \ However, you must maintain social distancing and regularly wash your hands and sanitize them. \n\
+    "
+  utter_wrong_age_format:
+  - text: "Please enter the valid age number."
+  utter_ask_bodyTemperature:
+  - text: "Now let's understand your current body temperature in degrees Fahrenheit.\n\
+      \ Remember Normal body temperature is 98.6°F or 37°C."
+    buttons:
+       - title: Normal (96°F-98.6°F or 35.5°C-37°C)
+         payload: Normal (96°F-98.6°F or 35.5°C-37°C)
+       - title: Fever (98.7°F-102°F or 37°C-38.8°C)
+         payload: Fever (98.7°F-102°F or 37°C-38.8°C)
+       - title: High Fever (>102°F or >38.8°C)
+         payload: High Fever (>102°F or >38.8°C)
 
-  utter_cheer_up:
-  - text: "Here is something to cheer you up:"
-    image: "https://i.imgur.com/nGF1K8f.jpg"
+#    custom:
+#      payload: html_button
+#      data:
+#      - title: <p style="color:green;">Normal (96°F-98.6°F or 35.5°C-37°C)</p>
+#        payload: Normal (96°F-98.6°F or 35.5°C-37°C)
+#      - title: <p style="color:orange;">Fever (98.7°F-102°F or 37°C-38.8°C)</p>
+#        payload: Fever (98.7°F-102°F or 37°C-38.8°C)
+#      - title: <p style="color:red;">High Fever (>102°F or >38.8°C)</p>
+#        payload: High Fever (>102°F or >38.8°C)
 
-  utter_did_that_help:
-  - text: "Did that help you?"
+  utter_ask_symptoms1:
+  - text: "Are you experiencing any of the symptoms below? "
+    buttons:
+         - title: Dry Cough (New or Worsening)
+           payload: Dry Cough (New or Worsening)
+         - title: Sore Throat/Runny Nose
+           payload: Sore Throat/Runny Nose
+         - title: Shortness of Breath
+           payload: Shortness of Breath
+         - title: All the above
+           payload: All the above
+         - title: None of these
+           payload: None of these
+      #    custom:
+      ##      payload: multiSelectButton
+      ##      data:
+      ##      - title: Dry Cough (New or Worsening)
+      ##        payload: Dry Cough (New or Worsening)
+      ##      - title: Sore Throat/Runny Nose
+      ##        payload: Sore Throat/Runny Nose
+      ##      - title: Shortness of Breath
+      ##        payload: Shortness of Breath
+      ##      - title: All the above
+      ##        payload: All the above
+    ##      - title: None of these
+    ##        payload: None of these
+  utter_ask_symptoms2:
+  - text: "And what about these ones.  \n\
+    \ Please verify if you are experiencing any of the symptoms below. "
+    buttons:
+         - title: Moderate to Severe Cough
+           payload: Moderate to Severe Cough
+         - title: Difficulty in Breathing
+           payload: Difficulty in Breathing
+         - title: Drowsiness
+           payload: Drowsiness
+         - title: Persistent Pain and Pressure in Chest
+           payload: Persistent Pain and Pressure in Chest
+         - title: Severe Weakness
+           payload: Severe Weakness
+         - title: Stomach Pain or Vomit
+           payload: Stomach Pain or Vomit
+         - title: All the above
+           payload: All the above
+         - title: None of these
+           payload: None of these
+           #    custom:
+#      payload: multiSelectButton
+#      data:
+#      - title: Moderate to Severe Cough
+#        payload: Moderate to Severe Cough
+#      - title: Difficulty in Breathing
+#        payload: Difficulty in Breathing
+#      - title: Drowsiness
+#        payload: Drowsiness
+#      - title: Persistent Pain and Pressure in Chest
+#        payload: Persistent Pain and Pressure in Chest
+#      - title: Severe Weakness
+#        payload: Severe Weakness
+#      - title: Stomach Pain or Vomit
+#        payload: Stomach Pain or Vomit
+#      - title: All the above
+#        payload: All the above
+#      - title: None of these
+#        payload: None of these
 
-  utter_happy:
-  - text: "Great, carry on!"
+  utter_ask_travelHistory:
+  - text: "I noted that \n\
+    \ Please tell us about your travel and exposure details. "
+    buttons:
+        - title: No travel history
+          payload: No travel history
+        - title: No contact with anyone with the symptoms
+          payload: No contact with anyone with the symptoms
+        - title: History of travel and meeting in affected geographical area in last 14 days
+          payload: History of travel and meeting in affected geographical area in last 14 days
+        - title: Close contact with confirmed COVID in last 14 days
+          payload: Close contact with confirmed COVID in last 14 days
+  utter_ask_medicalHistory:
+  - text: "To understand your condition, we need more details about previous health conditions. \n\
+     \ Hope you understand.  \n\
+     \ Do you have a history of any of these conditions?"
+    buttons:
+        - title: Diabetes
+          payload: Diabetes
+        - title: High Blood Pressure
+          payload: High Blood Pressure
+        - title: Heart Disease
+          payload: Heart Disease
+        - title: Kidney Disease
+          payload: Kidney Disease
+        - title: Lung Disease
+          payload: Lung Disease
+        - title: Stroke
+          payload: Stroke
+        - title: Reduced Immunity
+          payload: Reduced Immunity
+        - title: None of these
+          payload: None of these
+  utter_ask_symptomChanges:
+  - text: "One last question and we are done. \n\
+    \ How have your symptoms progressed over the last 48 hrs? "
+    buttons:
+          - title: Improved
+            payload: Improved
+          - title: Same, no change!
+            payload: Same, no change!
+          - title: Bad
+            payload: Bad
+          - title: Bad Considerably
+            payload: Bad Considerably
+  utter_otherTime:
+  - text: "No problem. We can do your Covid-19 assessment anytime you need. I'm always here to help you.\n\
+    \ You can start your assessment by entering 'start assessment' keywords. \n\
+    \ However, you must maintain social distancing and regularly wash your hands and sanitize them. \n\
+    "
+  utter_high:
+      - text: "Please search for IMMEDIATE HELP! This is not the time to be a hero \
+  \ by hiding your problems. Your life is extremely important to you and the ones close to you. \n\
+  \ Follow these steps: \n\
+  \ 1. Call to the helpline in your country \n\
+  \ 2. Tell your family about your condition and ask them to check on you, VIA THE PHONE ONLY, time to time. \n\
+  \ 3. Self-isolate yourself immediately. You might not be even sick. But, even so, the prevention is the mother of all health \n\
+  \ 4. Check you symptoms regularly"
+  utter_medium:
+  -  text: "Please have a chat with your doctor. Let know your friends and family how \
+  \ are you feeling and ask them how they are feeling and try to remember if you got in contact with one of them \
+  \ couple of days ago. \n Also try to find advice online or on the phone from a qualified source. Self-isolate for few \
+  \ days and see if the condition is worsening or not."
+  utter_low:
+  - text: "Based on the symptoms you shared with us, it's unlikely you have a COVID 19 infection.\n\
+  \ However, you must maintain social distancing and regularly wash your hands and sanitize them.\n\
+  "
+  utter_bye:
+  - text: "Thanks for connecting with me."
 
-  utter_goodbye:
-  - text: "Bye"
-
-  utter_iamabot:
-  - text: "I am a bot, powered by Rasa."
-
-session_config:
-  session_expiration_time: 60
-  carry_over_slots_to_new_session: true
+actions:
+# - utter_greet
+# - utter_menu
+# - utter_urlAvailable
+# - utter_lead_q1
+# - utter_lead_q2
+# - utter_lead_q3
+# - utter_lead_q4
+# - utter_lead_q5
+# - utter_ask_requirement
+# - utter_ask_mockup
+# - utter_ask_url
+# - utter_ask_timeline
+# - utter_ask_budget
+# - utter_ask_name
+# - utter_ask_email
+# - utter_ask_phone
+# - action_start_info
+- utter_start_conv
+- utter_ask_age
+- utter_ask_gender
+- utter_ask_bodyTemperature
+- utter_ask_symptoms1
+- utter_ask_symptoms2
+- utter_ask_travelHistory
+- utter_ask_medicalHistory
+- utter_ask_symptomChanges
+- utter_otherTime
+- utter_bye
+- utter_low
+- utter_high
+- utter_under_16
+- utter_above_107
+- action_reset_all_slots
+- action_corona_tracker
+forms:
+# - lead_form_p1
+# - lead_form_p2
+# - lead_form_p3
+- assessment_form
