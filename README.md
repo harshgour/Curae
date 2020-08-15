@@ -82,7 +82,7 @@ Arijit Mukherjee
 
 Harsh Gour
 <p align="center">
-<img src = "Images/Abhishek.jpg"  height="120" alt="Abhishek Saxena">
+<img src = "https://avatars2.githubusercontent.com/u/60436404?s=460&v=4"  height="120" alt="Abhishek Saxena">
 </p>
 <p align="center">
 <a href = "https://github.com/harshgour"><img src = "http://www.iconninja.com/files/241/825/211/round-collaboration-social-github-code-circle-network-icon.svg" width="36" height = "36"/></a>
