@@ -9,11 +9,15 @@
 
 ---
 
-  [![UI ](https://img.shields.io/badge/User%20Interface-Link%20to%20UI-orange?style=flat-square&logo=appveyor)](images/UI.png)
+  [![UI ](https://img.shields.io/badge/User%20Interface-Link%20to%20UI-orange?style=flat-square&logo=appveyor)](UI images)
 
 ## Preview
-![Web_app](UI Images/Patient/Screenshot_1597508996.png)<br/>
-![Web_app](UI Images/Doctor/Screenshot_1597510251.png)<br/>
+<a href="">
+	<img src="UI Images/Doctor/Screenshot_1597510251.png" width=80%/>
+</a>
+<a href="">
+	<img src="UI Images/Patient/Screenshot_1597508996.png" width=80%/>
+</a>
 
 ## Functionalities
 - [x] This App will make a bridge between the Patient and Hospital, which will not only help patients to reach to the nearest Hospital but also notify the patient about the availability of beds. 
