@@ -44,7 +44,8 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: AdobeDashboardPatient.id,
+      initialRoute:
+          AdobeDashboard.id, //AdobeDashboard.id    AdobeDashboardPatient.id
       routes: {
         AdobeWelcomeScreen.id: (context) => AdobeWelcomeScreen(),
         AdobeDashboard.id: (context) => AdobeDashboard(),
@@ -54,6 +55,36 @@ class _MyAppState extends State<MyApp> {
         AdobeAllDoctorsPage.id: (context) => AdobeAllDoctorsPage(),
         AdobeDashboardPatient.id: (context) => AdobeDashboardPatient(),
       },
+//      routes: {
+//        // Named Routes
+//        WelcomeAnimation.id: (context) => WelcomeAnimation(),
+//        ChooseTypePage.id: (context) => ChooseTypePage(),
+//        DoctorRegPage.id: (context) => DoctorRegPage(),
+//        PatientRegPage.id: (context) => PatientRegPage(),
+//        LoginScreen.id: (context) => LoginScreen(),
+//        RegistrationScreen.id: (context) => RegistrationScreen(),
+//        OnboardingScreen.id: (context) => OnboardingScreen(),
+//        Home.id: (context) => Home(),
+//        MeetMyPatients.id: (context) => MeetMyPatients(),
+//        ViewRecord.id: (context) => ViewRecord(),
+//        QrCodeScanner.id: (context) => QrCodeScanner(),
+//        ConsultNow.id: (context) => ConsultNow(),
+//        Emergency.id: (context) => Emergency(),
+//        MyProfile.id: (context) => MyProfile(),
+//        DoctorContacts.id: (context) => DoctorContacts(),
+//        MessageTile.id: (context) => MessageTile(),
+//        NavigateToDoctor.id: (context) => NavigateToDoctor(),
+//      },
+//      home: FutureBuilder(
+//        future: userService.getCurrentUser(),
+//        builder: (context, snapshot) {
+//          if (snapshot.hasData) {
+//            return Home();
+//          } else {
+//            return DoctorRegPage();
+//          }
+//        },
+//      ),
     );
   }
 }
