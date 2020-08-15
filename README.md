@@ -66,7 +66,7 @@ Aditya Mangla
 Arijit Mukherjee
 
 <p align="center">
-<img src = "https://avatars2.githubusercontent.com/u/66933595?s=400&u=83482fbf357accb9cb28ce50c4e1600663f9dfa9&v=4">
+<img src = "https://avatars2.githubusercontent.com/u/66933595?s=400&u=289e75c60b41e8c27b3fd02b57c2a9c50c20708e&v=4">
 </p>
 <p align="center">
 <a href = "https://github.com/Arijit123Muk"><img src = "http://www.iconninja.com/files/241/825/211/round-collaboration-social-github-code-circle-network-icon.svg" width="36" height = "36"/></a>
